@@ -5,29 +5,35 @@ module todos {
 
     export class MatrixCtrl {
 
-        private matrix: MatrixItem[];
+        private matrix: Array<MatrixItem>;
 
         public static $inject = [
-            // '$scope',
+            '$scope'
             // '$location',
             // 'todoStorage',
             // 'filterFilter'
         ];
 
         constructor(
-            // private $scope: ITodoScope,
+            private $scope: ITodoScope
             // private $location: ng.ILocationService,
             // private todoStorage: ITodoStorage,
             // private filterFilter
         ) {
+            let m = new Array<MatrixItem>();
+            m.push(new MatrixItem('Матрица А', 4, 2));
+            m.push(new MatrixItem('Матрица В', 2, 3));
+            m.push(new MatrixItem('Матрица С', 4, 3));
+            $scope.matrix = m;
+            $scope.test = 'test';
             // this.todos = $scope.todos = todoStorage.get();
             //
-            // $scope.newTodo = '';
+            $scope.newTodo = '';
             // $scope.editedTodo = null;
             //
             // // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
             // // for its methods to be accessible from view / HTML
-            // $scope.vm = this;
+            $scope.vm = this;
             //
             // // watching for events/changes in scope, which are caused by view/user input
             // // if you subscribe to scope or event with lifetime longer than this controller, make sure you unsubscribe.

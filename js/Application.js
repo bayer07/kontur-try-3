@@ -3,35 +3,49 @@ var todos;
 (function (todos) {
     'use strict';
     var MatrixItem = (function () {
-        function MatrixItem(title, completed) {
-            this.title = title;
-            this.completed = completed;
+        function MatrixItem(_name, _n, _m) {
+            this.name = _name;
+            this.n = _n;
+            this.m = _m;
+            var ar = [];
+            ar.push(1);
+            ar.push(2);
+            ar.push(3);
+            var ar2 = [];
+            ar2.push(ar);
+            ar2.push(ar);
+            ar2.push(ar);
+            this.array = ar2;
         }
+        MatrixItem.prototype.getArray = function () {
+            return this.array;
+        };
         return MatrixItem;
     }());
     todos.MatrixItem = MatrixItem;
 })(todos || (todos = {}));
 /// <reference path='_all.ts' />
+/// <reference path='_all.ts' />
 var todos;
 (function (todos) {
     'use strict';
-    /**
-     * The main controller for the app. The controller:
-     * - retrieves and persists the model via the todoStorage service
-     * - exposes the model to the template and provides event handlers
-     */
     var MatrixCtrl = (function () {
-        // dependencies are injected via AngularJS $injector
-        // controller's name is registered in Application.ts and specified from ng-controller attribute in index.html
-        function MatrixCtrl() {
+        function MatrixCtrl($scope) {
+            this.$scope = $scope;
+            var m = new Array();
+            m.push(new todos.MatrixItem('Матрица А', 4, 2));
+            m.push(new todos.MatrixItem('Матрица В', 2, 3));
+            m.push(new todos.MatrixItem('Матрица С', 4, 3));
+            $scope.matrix = m;
+            $scope.test = 'test';
             // this.todos = $scope.todos = todoStorage.get();
             //
-            // $scope.newTodo = '';
+            $scope.newTodo = '';
             // $scope.editedTodo = null;
             //
             // // 'vm' stands for 'view model'. We're adding a reference to the controller to the scope
             // // for its methods to be accessible from view / HTML
-            // $scope.vm = this;
+            $scope.vm = this;
             //
             // // watching for events/changes in scope, which are caused by view/user input
             // // if you subscribe to scope or event with lifetime longer than this controller, make sure you unsubscribe.
@@ -41,11 +55,9 @@ var todos;
             // if ($location.path() === '') $location.path('/');
             // $scope.location = $location;
         }
-        // $inject annotation.
-        // It provides $injector with information about dependencies to be injected into constructor
-        // it is better to have it close to the constructor, because the parameters must match in count and type.
-        // See http://docs.angularjs.org/guide/di
-        MatrixCtrl.$inject = [];
+        MatrixCtrl.$inject = [
+            '$scope'
+        ];
         return MatrixCtrl;
     }());
     todos.MatrixCtrl = MatrixCtrl;
@@ -65,6 +77,7 @@ var todos;
 /// <reference path='libs/jquery/jquery.d.ts' />
 /// <reference path='libs/angular/angular.d.ts' />
 /// <reference path='MatrixItem.ts' />
+/// <reference path='ITodoScope.ts' />
 /// <reference path='MatrixCtrl.ts' />
 /// <reference path='Application.ts' />
 //# sourceMappingURL=Application.js.map
