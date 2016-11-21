@@ -1,0 +1,17 @@
+{
+    "name": "test_task",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "compile": "tsc --sourcemap --out js/Application.js js/_all.ts"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "angular": "^1.3.13"
+    },
+    "devDependencies": {
+        "typescript": "^1.5.0-alpha"
+    }
+}
