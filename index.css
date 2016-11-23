@@ -1,0 +1,111 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background: white;
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    color: #404040;
+    line-height: 20px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+section {
+    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+    background-color: silver;
+    height: 100%;
+}
+
+button {
+    margin-bottom: 20px;
+    background-color: white;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    padding: 10px;
+}
+
+aside {
+    display: inline-block;
+    padding: 50px;
+}
+
+.cell {
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+label, .matrix {
+    vertical-align: middle;
+}
+
+.matrix {
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.row {
+    margin-bottom: 40px;
+}
+
+.row-matrix-radio {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#submit {
+    background-color: green;
+    color: white;
+}
+
+.vertical {
+    display: block;
+}
+.matrix-name{
+  font-size: 18px;
+font-weight: bold;
+}
+.vertical, label {
+    text-align: center;
+}
+
+.squarebrackets {
+    font-family: calibri;
+    font-size: 20px;
+    position: relative;
+    padding: 10px;
+}
+
+.squarebrackets:before {
+    content: " ";
+    position: absolute;
+    border-left: 2px solid #666;
+    border-top: 2px solid #666;
+    border-bottom: 2px solid #666;
+    padding: 5px;
+    top: -10px;
+    bottom: -10px;
+    left: -5px;
+}
+
+.squarebrackets:after {
+    content: " ";
+    position: absolute;
+    border-right: 2px solid #666;
+    border-top: 2px solid #666;
+    border-bottom: 2px solid #666;
+    padding: 5px;
+    top: -10px;
+    bottom: -10px;
+    right: -5px;
+}

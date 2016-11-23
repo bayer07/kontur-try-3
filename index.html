@@ -3,62 +3,49 @@
     <head>
         <meta charset="utf-8">
         <title>Тестовое задание "СКБ Контур"</title>
+        <link rel="stylesheet" href="index.css">
     </head>
-    <body>
-        <section class="todoapp" ng-controller="MatrixCtrl">
-            <header class="header">
-                <h1>todos</h1>
-                <form class="todo-form" ng-submit="vm.addTodo()">
-                    <input class="new-todo" placeholder="What needs to be done?" ng-model="newTodo" autofocus>
-                </form>
-								{{newTodo}}
-								{{test}}
-								<div ng-repeat="matrixItem in matrix">
-				            {{matrixItem}}
-				            {{matrixItem.n}}
-				            {{matrixItem.m}}
-				        </div>
-            </header>
-            <section class="main" ng-show="todos.length" ng-cloak>
-                <input class="toggle-all" type="checkbox" ng-model="allChecked" ng-click="vm.markAll(allChecked)">
-                <label for="toggle-all">Mark all as complete</label>
-                <ul class="todo-list">
-                    <li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
-                        <div class="view">
-                            <input class="toggle" type="checkbox" ng-model="todo.completed">
-                            <label ng-dblclick="vm.editTodo(todo)">{{todo.title}}</label>
-                            <button class="destroy" ng-click="vm.removeTodo(todo)"></button>
-                        </div>
-                        <form ng-submit="vm.doneEditing(todo)">
-                            <input class="edit" ng-model="todo.title" todo-blur="vm.doneEditing(todo)" todo-focus="todo == editedTodo" todo-escape="vm.revertEdits(todo)">
-                        </form>
-                    </li>
-                </ul>
-            </section>
-            <footer class="footer" ng-show="todos.length" ng-cloak>
-                <span class="todo-count">
-                    <strong>{{remainingCount}}</strong>
-                    <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
-                </span>
-                <ul class="filters">
-                    <li>
-                        <a ng-class="{selected: location.path() == '/'} " href="#/">All</a>
-                    </li>
-                    <li>
-                        <a ng-class="{selected: location.path() == '/active'}" href="#/active">Active</a>
-                    </li>
-                    <li>
-                        <a ng-class="{selected: location.path() == '/completed'}" href="#/completed">Completed</a>
-                    </li>
-                </ul>
-                <button class="clear-completed" ng-click="vm.clearDoneTodos()" ng-show="doneCount">Clear completed</button>
-            </footer>
+    <body ng-controller="matrixCtrl">
+        <section>
+            <form>
+                <div class="row">
+                    <button type="submit" id="submit">Умножить</button>
+                </div>
+                <div class="row">
+                    <button type="button" class="vertical" ng-click="vm.clear()">Очистить</button>
+                    <button type="button" class="vertical">Поменять</button>
+                </div>
+                <div class="row">
+                    <div class="row-matrix-radio">
+                        <label ng-repeat="m in matrixEdit">
+                            <input type="radio" ng-checked="m.isSelected" ng-click="vm.pickMatrix(m)"/>
+                            <span ng-cloak>{{m.name}}</span>
+                        </label>
+                    </div>
+                    <div>
+                        <button type="button" ng-click="vm.addRow()">Добавить</button>
+                        <button type="button" ng-click="vm.removeRow()">Удалить</button>
+                        строку
+                    </div>
+                    <div>
+                        <button type="button" ng-click="vm.addCol()">Добавить</button>
+                        <button type="button" ng-click="vm.removeCol()">Удалить</button>
+                        столбец
+                    </div>
+                </div>
+            </form>
         </section>
-        <footer class="info">
-            <p>Double-click to edit a todo</p>
-						{{test}}
-
-        </footer>
+        <aside>
+            <div class="row">
+                <my-directive class="matrix squarebrackets" info="matrix.C"></my-directive>
+                <my-directive class="matrix squarebrackets" info="matrix.A"></my-directive>
+                <label class="matrix-name">A</label>
+            </div>
+            <div class="row">
+                <my-directive class="matrix squarebrackets label-block" info="matrix.B"></my-directive>
+                <label class="matrix-name">B</label>
+            </div>
+        </aside>
         <script src="node_modules/angular/angular.js"></script>
         <script src="js/Application.js"></script>
     </body>

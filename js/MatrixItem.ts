@@ -4,30 +4,71 @@ module todos {
     'use strict';
 
     export class MatrixItem {
-        name: string;
-        array: Array<Array<number>>;
-        n: number;
-        m: number;
+        public name: string;
+        public shortName: string;
+        public array: Array<Array<number>>;
+        public isSelected: boolean;
+        private _n: number;
+        private _m: number;
         constructor(
             _name: string,
-            _n: number,
-            _m: number
+            _shortName: string,
+            n: number,
+            m: number
         ) {
             this.name = _name;
-            this.n = _n;
-            this.m = _m;
-            var ar = [];
-            ar.push(1);
-            ar.push(2);
-            ar.push(3);
-            var ar2 = [];
-            ar2.push(ar);
-            ar2.push(ar);
-            ar2.push(ar);
-            this.array = ar2;
+            this.shortName = _shortName;
+            this.array = [];
+            for (var i = 0; i < n; i++) {
+                var ar = [];
+                for(var j=0;j<m;j++){
+                  ar.push(null);
+                }
+                this.array.push(ar);
+            }
+            this.isSelected = false;
+            this._n = n;
+            this._m = m;
         }
-        getArray() {
-            return this.array;
+        addRow() {
+            if (this._n < 10) {
+                this.array.push(new Array(this._m));
+                this._n++;
+            }
+
+        }
+        removeRow() {
+            if (this._n > 2) {
+                this.array.splice(-1, 1);
+                this._n--;
+            }
+        }
+        addCol() {
+            if (this._m < 10) {
+                for (var i = 0; i < this._n; i++) {
+                    this.array[i].push(null);
+                }
+                this._m++;
+            }
+        }
+        removeCol() {
+            if (this._m > 2) {
+                for (var i = 0; i < this._n; i++) {
+                    this.array[i].splice(-1, 1);
+                }
+                this._m--;
+            }
+        }
+        getStyle() {
+            if (this.shortName == 'B') {
+                return 'display: inline-block';
+            }
+            else {
+                return 'display: block';
+            }
+        }
+        change(){
+console.log("change");
         }
     }
 }
