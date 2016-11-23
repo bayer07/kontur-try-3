@@ -8,55 +8,68 @@ module todos {
         public shortName: string;
         public array: Array<Array<number>>;
         public isSelected: boolean;
-        private _n: number;
-        private _m: number;
+        public isDisabled: boolean;
+        public n: number;
+        public m: number;
         constructor(
             _name: string,
             _shortName: string,
-            n: number,
-            m: number
+            _n: number,
+            _m: number,
+            _isDisabled: boolean
         ) {
             this.name = _name;
             this.shortName = _shortName;
             this.array = [];
-            for (var i = 0; i < n; i++) {
+            for (var i = 0; i < _n; i++) {
                 var ar = [];
-                for(var j=0;j<m;j++){
-                  ar.push(null);
+                for (var j = 0; j < _m; j++) {
+                    ar.push(null);
                 }
                 this.array.push(ar);
             }
             this.isSelected = false;
-            this._n = n;
-            this._m = m;
+            this.n = _n;
+            this.m = _m;
+            this.isDisabled = _isDisabled;
+        }
+        clear() {
+            this.array = [];
+            for (var i = 0; i < this.n; i++) {
+                var ar = [];
+                for (var j = 0; j < this.m; j++) {
+                    ar.push(null);
+                }
+                this.array.push(ar);
+            }
         }
         addRow() {
-            if (this._n < 10) {
-                this.array.push(new Array(this._m));
-                this._n++;
+            if (this.n < 10) {
+                this.array.push(new Array(this.m));
+                this.n++;
             }
 
         }
         removeRow() {
-            if (this._n > 2) {
+            if (this.n > 2) {
                 this.array.splice(-1, 1);
-                this._n--;
+                this.n--;
             }
         }
         addCol() {
-            if (this._m < 10) {
-                for (var i = 0; i < this._n; i++) {
+            if (this.m < 10) {
+                for (var i = 0; i < this.n; i++) {
                     this.array[i].push(null);
                 }
-                this._m++;
+                this.m++;
             }
         }
         removeCol() {
-            if (this._m > 2) {
-                for (var i = 0; i < this._n; i++) {
+            if (this.m > 2) {
+                for (var i = 0; i < this.n; i++) {
                     this.array[i].splice(-1, 1);
                 }
-                this._m--;
+                this.m--;
             }
         }
         getStyle() {
@@ -66,9 +79,6 @@ module todos {
             else {
                 return 'display: block';
             }
-        }
-        change(){
-console.log("change");
         }
     }
 }

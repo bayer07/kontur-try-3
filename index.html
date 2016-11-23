@@ -6,14 +6,14 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body ng-controller="matrixCtrl">
-        <section>
-            <form>
+        <section ng-style="vm.getStyle()">
+            <form ng-submit="vm.onSubmit()">
                 <div class="row">
-                    <button type="submit" id="submit">Умножить</button>
+                    <button type="submit" id="submit">Умножить матрицы</button>
                 </div>
                 <div class="row">
-                    <button type="button" class="vertical" ng-click="vm.clear()">Очистить</button>
-                    <button type="button" class="vertical">Поменять</button>
+                    <button type="button" class="vertical" ng-click="vm.clear()">Очистить матрицы</button>
+                    <button type="button" class="vertical" ng-click="vm.swap()">Поменять матрицы местами</button>
                 </div>
                 <div class="row">
                     <div class="row-matrix-radio">
@@ -33,17 +33,20 @@
                         столбец
                     </div>
                 </div>
+                <div class="row error" ng-show="vm.isError()">
+                    Такие матрицы нельзя перемножить, так как количество столбцов матрицы A, не равно количеству строк матрицы B.
+                </div>
             </form>
         </section>
         <aside>
             <div class="row">
                 <my-directive class="matrix squarebrackets" info="matrix.C"></my-directive>
-                <my-directive class="matrix squarebrackets" info="matrix.A"></my-directive>
-                <label class="matrix-name">A</label>
+                <my-directive class="matrix squarebrackets" info="matrix.A" function="vm.changeCell(name,i,j,value)" blur="vm.onBlur()" focus="vm.onFocus()"></my-directive>
+                <label class="matrix-name">{{matrix.A.shortName}}</label>
             </div>
             <div class="row">
-                <my-directive class="matrix squarebrackets label-block" info="matrix.B"></my-directive>
-                <label class="matrix-name">B</label>
+                <my-directive class="matrix squarebrackets" info="matrix.B" function="vm.changeCell(name,i,j,value)" blur="vm.onBlur()" focus="vm.onFocus()"></my-directive>
+                <label class="matrix-name">{{matrix.B.shortName}}</label>
             </div>
         </aside>
         <script src="node_modules/angular/angular.js"></script>

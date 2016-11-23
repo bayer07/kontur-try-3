@@ -1,5 +1,6 @@
 /// <reference path='libs/jquery/jquery.d.ts' />
 /// <reference path='libs/angular/angular.d.ts' />
+/// <reference path='State.ts' />
 /// <reference path='MatrixItem.ts' />
 /// <reference path='Matrix.ts' />
 /// <reference path='ITodoScope.ts' />
